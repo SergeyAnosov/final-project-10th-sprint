@@ -1,25 +1,36 @@
 #!/bin/bash
 
-# создаём каталог task с вложенными директориями
+#создаём каталог task с вложенными директориями
 # task
 #   dir1
 #   dir2
 #   dir3
 #       dir4
+mkdir task
+mkdir task/dir1 && mkdir task/dir2 && mkdir task/dir3
+mkdir task/dir3/dir4
 
-# изменяем текущую директорию на task
+#изменяем текущую директорию на task
+cd task
 
-# создаём пустой файл task/dir2/empty
+#создаём пустой файл task/dir2/empty
+touch dir2/empty.txt
 
-# создаём файл task/dir2/hello.sh с таким содержанием:
+#создаём файл task/dir2/hello.sh с таким содержанием:
 # #!/bin/bash
 # echo "$1, привет!"
+touch dir2/hello.sh
+echo '#!bin/bash' > dir2/hello.sh
+echo '$1, привет' >> dir2/hello.sh
 
-# устанавливаем для task/dir2/hello.sh права rwxrw-r--
+#устанавливаем для task/dir2/hello.sh права rwxrw-r--
+chmod 764 dir2/hello.sh
 
-# сохраняем список файлов task/dir2 в task/dir2/list.txt
+#сохраняем список файлов task/dir2 в task/dir2/list.txt
+ls dir2/ > dir2/list.txt
 
 # копируем содержимое каталога task/dir2 в каталог task/dir3/dir4
+cp dir2/* dir3/dir4/
 
 # записываем в task/dir1/summary.txt список файлов с расширением *.txt
 # находящихся в task, включая поддиректории
